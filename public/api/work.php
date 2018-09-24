@@ -3,6 +3,7 @@
 
 require '../../app/common.php';
 
+// Get the taskId from URL params
 $taskId = intval($_GET['taskId'] ?? 0);
 
 if ($taskId < 1) {
@@ -10,10 +11,10 @@ if ($taskId < 1) {
 }
 
 //1. Go to database and get all work associated with the $taskId
-$workArr = Work::getAllWorkByTask($taskId);
+$work = Work::findByTaskID($taskId);
 
 //2. convert to Json
-$json = json_encode($workArr);
+$json = json_encode($work);
 
 //3. Print
 echo $json;
